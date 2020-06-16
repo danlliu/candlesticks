@@ -349,8 +349,21 @@ let rightup = () => {
 // *** hammer *** //
 {
     load("hammer");
-    ctx.fillStyle = YELLOW;
-    ctx.fillRect(120, 96, 16, 20);
+    ctx.fillStyle = RED;
+    //ctx.fillRect(120, 96, 16, 20);
+    ctx.beginPath();
+    ctx.moveTo(120, 96);
+    ctx.lineTo(136, 96);
+    ctx.lineTo(136, 116);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = GREEN;
+    ctx.beginPath();
+    ctx.moveTo(120, 96);
+    ctx.lineTo(120, 116);
+    ctx.lineTo(136, 116);
+    ctx.closePath();
+    ctx.fill();
     line(128, 96, 128, 54);
     leftdown();
     rightup();
