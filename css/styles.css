@@ -1,0 +1,13 @@
+section > section {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.pattern, .detail {
+    width: 40%;
+}
+
+.sc {
+    width: 20%
+}
