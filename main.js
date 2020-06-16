@@ -1,5 +1,4 @@
 const RED = "#E22E33";
-const YELLOW = "#D4AF37";
 const GREEN = "#14854C";
 
 function template(idname, title, descr, str, conf) {
@@ -120,13 +119,42 @@ let hammer = new Pattern(
     "hammer",
     "Hammer",
     "The Hammer is a one candle reversal pattern at the bottom of a downtrend with a lower shadow at least two times the size of the candle body and small or no upper shadow. The color of the hammer is not important, but a white hammer is more bullish than a black hammer.\n" +
-    "A bullish next day is needed to confirm this reversal.",
+    "The next day needs to confirm the hammer with a strong bullish day.",
     "strong",
-    "yes, next day must be positive"
+    "yes, next day must be strong positive."
+);
+let hangingman = new Pattern(
+    "hangingman",
+    "Hanging Man",
+    "The Hanging Man is a one candle reversal pattern at the top of an uptrend with a lower shadow at least two times the size of the candle body and small or no upper shadow. The color of the hanging man is not important, but a black hanging man is more bearish than a white hanging man.\n" +
+    "The next day needs to confirm the hanging man with a bearish day or a gap down with a lower close.",
+    "strong",
+    "yes, next day must be negative or a gap down with lower close"
+);
+let piercing = new Pattern(
+    "piercing",
+    "Piercing",
+    "The Piercing pattern is formed after a downtrend with a black candle followed by a white candle that opens below the low of the previous day and closes more than midway up the black candle. The longer the candles, the more forceful the reversal.",
+    "strong",
+    "no, but large volume is good"
+);
+let dark_cloud = new Pattern(
+    "dark_cloud",
+    "Dark Cloud Cover",
+    "The Dark Could Cover pattern is the bearish version of the Piercing pattern, with a white candle at the end of an uptrend and a black candle opening higher and closing more than halfway down the white candle.",
+    "strong",
+    "no, but large volume is good"
+);
+let bullish_harami = new Pattern(
+    "bul_harami",
+    "Bullish Harami",
+    "The Bullish Harami is an often-seen formation that is composed of two candles in a downtrending market. The first candle is a black candle, and the second one is a white candle whose body lies within the black candle.",
+    "strong",
+    "yes"
 );
 
 let simples = [black_marubozu, white_marubozu, closing_marubozu, opening_marubozu, spinning_top];
-let major_reverses = [doji_star, gravestone, dragonfly, bullish_engulfing, bearish_engulfing, hammer];
+let major_reverses = [doji_star, gravestone, dragonfly, bullish_engulfing, bearish_engulfing, hammer, hangingman, piercing, dark_cloud, bullish_harami];
 
 simples.forEach((p) => {
     SIMPLE.innerHTML += template(p.idname, p.title, p.description, p.str, p.conf);
@@ -365,6 +393,58 @@ let rightup = () => {
     ctx.closePath();
     ctx.fill();
     line(128, 96, 128, 54);
+    leftdown();
+    rightup();
+}
+// *** hangingman *** //
+{
+    load("hangingman");
+    ctx.fillStyle = RED;
+    //ctx.fillRect(120, 16, 16, 20);
+    ctx.beginPath();
+    ctx.moveTo(120, 16);
+    ctx.lineTo(136, 16);
+    ctx.lineTo(136, 36);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = GREEN;
+    ctx.beginPath();
+    ctx.moveTo(120, 16);
+    ctx.lineTo(120, 36);
+    ctx.lineTo(136, 36);
+    ctx.closePath();
+    ctx.fill();
+    line(128, 36, 128, 78);
+    leftup();
+    rightdown();
+}
+// *** piercing *** //
+{
+    load("piercing");
+    ctx.fillStyle = RED;
+    ctx.fillRect(104, 36, 16, 54);
+    ctx.fillStyle = GREEN;
+    ctx.fillRect(136, 54, 16, 48);
+    leftdown();
+    rightup();
+}
+// *** dark cloud cover *** //
+{
+    load("dark_cloud");
+    ctx.fillStyle = GREEN;
+    ctx.fillRect(104, 36, 16, 48);
+    ctx.fillStyle = RED;
+    ctx.fillRect(136, 20, 16, 54);
+    leftup();
+    rightdown();
+}
+// *** bullish harami *** //
+{
+    load("bul_harami");
+    ctx.fillStyle = RED;
+    ctx.fillRect(104, 32, 16, 64);
+    ctx.fillStyle = GREEN;
+    ctx.fillRect(136, 40, 16, 42);
     leftdown();
     rightup();
 }
