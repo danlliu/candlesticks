@@ -1,7 +1,7 @@
 const RED = "#E22E33";
 const GREEN = "#14854C";
 
-function template(idname, title, descr, str, conf) {
+function template(idname, title, descr, conf) {
     return `<section id="${idname}-sec">
             <div class="detail">
                 <details>
@@ -13,14 +13,13 @@ function template(idname, title, descr, str, conf) {
                 <canvas id="${idname}" width="256" height="128" style="border: 1px #000 solid"></canvas>
             </div>
             <div class="sc">
-                <p>Strength: ${str}</p>
                 <p>Confirmation: ${conf}</p>
             </div>
         </section>\n`
 }
 
 function navlink(idname, title) {
-    return `<li><a href="#${idname}">${title}</a></li>`
+    return `<a href="#${idname}">${title}</a>`
 }
 
 const SIMPLE = document.getElementById("simple");
@@ -28,12 +27,11 @@ const SIMPLE_NAV_LIST = document.getElementById("simple_list");
 const MAJOR = document.getElementById("major_rev");
 const MAJOR_NAV_LIST = document.getElementById("major_rev_list");
 
-function Pattern(idname, title, description, strength, confirm) {
+function Pattern(idname, title, description, confirm) {
     return {
         "idname": idname,
         "title": title,
         "description": description,
-        "str": strength,
         "conf": confirm,
     }
 }
@@ -42,36 +40,31 @@ function Pattern(idname, title, description, strength, confirm) {
 let black_marubozu = new Pattern(
     "bl_maru",
     "Black Marubozu",
-    "The black marubozu is a weak indicator of bearish continuation or bullish reversal. A long black candle can indicate the final sell-off of a stock, leading to a bullish reversal.\n",
-    "weak",
+    "The black marubozu is a weak indicator of bearish continuation or bullish reversal. A long red candle can indicate the final sell-off of a stock, leading to a bullish reversal.\n",
     "not necessary"
 );
 let white_marubozu = new Pattern(
     "wh_maru",
     "White Marubozu",
-    "The white marubozu is a very strong indicator of bullish continuation or bearish reversal. Typically, a long white candle marks the beginning of an uptrend.",
-    "very strong",
+    "The white marubozu is a very strong indicator of bullish continuation or bearish reversal. Typically, a long green candle marks the beginning of an uptrend.",
     "not necessary"
 );
 let closing_marubozu = new Pattern(
     "cl_maru",
     "Closing Marubozu",
     "The closing marubozu has no shadow at its closing end, and is a strong signal in both cases for the direction they represent.",
-    "strong",
     "not necessary"
 );
 let opening_marubozu = new Pattern(
     "op_maru",
     "Opening Marubozu",
     "The opening marubozu has no shadow at its opening end. It also is a strong signal, but not as strong as the closing marubozu.",
-    "medium",
     "not necessary"
 );
 let spinning_top = new Pattern(
     "sp_top",
     "Spinning Top",
     "The spinning top is a neutral pattern with a small body and two shadows. The spinning top is neutral in a sideways market, but the next day's trading is likely to move in the direction of the opening price.",
-    "neutral",
     "yes"
 );
 
@@ -82,21 +75,18 @@ let doji_star = new Pattern(
     "Doji Star",
     "The Doji star is one of the most important signals. It indicates indecision in the market, and occurs when the opening and closing price are the same or nearly the same. " +
     "When a Doji appears at the top of a trend, it signifies a reversal without needing confirmation. When a Doji appears at the bottom of a trend, however, it needs a bullish day to confirm the Doji day.",
-    "very strong",
     "no at top, yes at bottom"
 );
 let gravestone = new Pattern(
     "gravestone",
     "Gravestone Doji",
     "The Gravestone Doji indicates indecision in the market, and is a sign of reversal. The Gravestone works better to signify a bottom reversal than a top reversal, but shows indecision in either case.",
-    "strong",
     "no at bottom, advisable at top"
 );
 let dragonfly = new Pattern(
     "dragonfly",
     "Dragonfly Doji",
     "The Dragonfly Doji also indicates indecision in the market, and is a sign of reversal. A long shadow on the Dragonfly is a very bullish sign.",
-    "strong",
     "advisable"
 );
 
@@ -105,14 +95,12 @@ let bullish_engulfing = new Pattern(
     "Bullish Engulfing",
     "The Bullish Engulfing pattern is a major reversal pattern after a downtrend where a red candle appears, and then the next day, a green candle opens lower than the previous close and closes higher than the previous open.\n" +
     "If the engulfing body engulfs the body and the shadows of the previous day, then the reversal is more likely to happen.",
-    "strong",
     "not necessary, but can be done"
 );
 let bearish_engulfing = new Pattern(
     "bear_engul",
     "Bearish Engulfing",
     "The Bearish Engulfing pattern is a major reversal pattern after an uptrend where a green candle appears, and then the next day, a red candle engulfs the previous candle.",
-    "strong",
     "not necessary, but can be done"
 );
 let hammer = new Pattern(
@@ -120,7 +108,6 @@ let hammer = new Pattern(
     "Hammer",
     "The Hammer is a one candle reversal pattern at the bottom of a downtrend with a lower shadow at least two times the size of the candle body and small or no upper shadow. The color of the hammer is not important, but a white hammer is more bullish than a black hammer.\n" +
     "The next day needs to confirm the hammer with a strong bullish day.",
-    "strong",
     "yes, next day must be strong positive."
 );
 let hangingman = new Pattern(
@@ -128,40 +115,48 @@ let hangingman = new Pattern(
     "Hanging Man",
     "The Hanging Man is a one candle reversal pattern at the top of an uptrend with a lower shadow at least two times the size of the candle body and small or no upper shadow. The color of the hanging man is not important, but a black hanging man is more bearish than a white hanging man.\n" +
     "The next day needs to confirm the hanging man with a bearish day or a gap down with a lower close.",
-    "strong",
     "yes, next day must be negative or a gap down with lower close"
 );
 let piercing = new Pattern(
     "piercing",
     "Piercing",
-    "The Piercing pattern is formed after a downtrend with a black candle followed by a white candle that opens below the low of the previous day and closes more than midway up the black candle. The longer the candles, the more forceful the reversal.",
-    "strong",
+    "The Piercing pattern is formed after a downtrend with a red candle followed by a green candle that opens below the low of the previous day and closes more than midway up the red candle. The longer the candles, the more forceful the reversal.",
     "no, but large volume is good"
 );
 let dark_cloud = new Pattern(
     "dark_cloud",
     "Dark Cloud Cover",
-    "The Dark Could Cover pattern is the bearish version of the Piercing pattern, with a white candle at the end of an uptrend and a black candle opening higher and closing more than halfway down the white candle.",
-    "strong",
+    "The Dark Could Cover pattern is the bearish version of the Piercing pattern, with a green candle at the end of an uptrend and a red candle opening higher and closing more than halfway down the green candle.",
     "no, but large volume is good"
 );
 let bullish_harami = new Pattern(
     "bul_harami",
     "Bullish Harami",
-    "The Bullish Harami is an often-seen formation that is composed of two candles in a downtrending market. The first candle is a black candle, and the second one is a white candle whose body lies within the black candle.",
-    "strong",
+    "The Bullish Harami is an often-seen formation that is composed of two candles in a downtrending market. The first candle is a red candle, and the second one is a green candle whose body lies within the red candle.",
     "yes"
 );
+let bearish_harami = new Pattern(
+    "bear_harami",
+    "Bearish Harami",
+    "The Bearish Harami is the bearish version of the Bullish Harami, consisting of a green candle after an uptrend followed by a red candle inside the green one.",
+    "yes"
+);
+let morning_star = new Pattern(
+    "m_star",
+    "Morning Star",
+    "The Morning Star is a bottom reversal signal that occurs over three candles, usually after a long downtrend. The first candle is a red candle, and is followed by a small candle that gaps down. This second candle occurs on the star day. The third candle is a green candle, showing the reversal.",
+    "no"
+)
 
 let simples = [black_marubozu, white_marubozu, closing_marubozu, opening_marubozu, spinning_top];
-let major_reverses = [doji_star, gravestone, dragonfly, bullish_engulfing, bearish_engulfing, hammer, hangingman, piercing, dark_cloud, bullish_harami];
+let major_reverses = [doji_star, gravestone, dragonfly, bullish_engulfing, bearish_engulfing, hammer, hangingman, piercing, dark_cloud, bullish_harami, bearish_harami, morning_star];
 
 simples.forEach((p) => {
-    SIMPLE.innerHTML += template(p.idname, p.title, p.description, p.str, p.conf);
+    SIMPLE.innerHTML += template(p.idname, p.title, p.description, p.conf);
     SIMPLE_NAV_LIST.innerHTML += navlink(p.idname, p.title);
 });
 major_reverses.forEach((p) => {
-    MAJOR.innerHTML += template(p.idname, p.title, p.description, p.str, p.conf);
+    MAJOR.innerHTML += template(p.idname, p.title, p.description, p.conf);
     MAJOR_NAV_LIST.innerHTML += navlink(p.idname, p.title);
 });
 
@@ -445,6 +440,45 @@ let rightup = () => {
     ctx.fillRect(104, 32, 16, 64);
     ctx.fillStyle = GREEN;
     ctx.fillRect(136, 40, 16, 42);
+    leftdown();
+    rightup();
+}
+// *** bearish harami *** //
+{
+    load("bear_harami");
+    ctx.fillStyle = GREEN;
+    ctx.fillRect(104, 32, 16, 64);
+    ctx.fillStyle = RED;
+    ctx.fillRect(136, 40, 16, 42);
+    leftup();
+    rightdown();
+}
+// *** m_star *** //
+{
+    load("m_star");
+    ctx.fillStyle = RED;
+    ctx.fillRect(88, 32, 16, 64);
+    line(96, 32, 96, 16);
+    line(96,96,96,104);
+    //ctx.fillRect(120, 104, 16, 12);
+    line(128, 104, 128, 98);
+    line(128, 116, 128, 122);
+    ctx.beginPath();
+    ctx.moveTo(120, 104);
+    ctx.lineTo(136, 104);
+    ctx.lineTo(136, 116);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = GREEN;
+    ctx.beginPath();
+    ctx.moveTo(120, 104);
+    ctx.lineTo(120, 116);
+    ctx.lineTo(136, 116);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillRect(152, 48, 16, 56);
+    line(160, 48, 160, 38);
+    line(160, 104, 160, 112);
     leftdown();
     rightup();
 }
