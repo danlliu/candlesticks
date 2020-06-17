@@ -32,9 +32,8 @@ li.dropdown {
 .dropdown_content {
     display: none;
     position: absolute;
-    background-color: lightgrey;
-    min-width: 160px;
-    max-width: 50%;
+    background-color: darkgrey;
+    max-width: 75%;
     z-index: 1;
 }
 
@@ -51,7 +50,16 @@ li.dropdown {
 }
 
 .dropdown:hover .dropdown_content {
-    display: block;
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-height: 60%;
+    background-color: darkgrey;
+}
+
+#major_rev_list {
+    min-width: 360px;
 }
 
 /* Sections */

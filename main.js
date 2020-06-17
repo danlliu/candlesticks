@@ -146,10 +146,28 @@ let morning_star = new Pattern(
     "Morning Star",
     "The Morning Star is a bottom reversal signal that occurs over three candles, usually after a long downtrend. The first candle is a red candle, and is followed by a small candle that gaps down. This second candle occurs on the star day. The third candle is a green candle, showing the reversal.",
     "no"
-)
+);
+let evening_star = new Pattern(
+    "e_star",
+    "Evening Star",
+    "The Evening Star is a top reversal signal that occurs over three candles after an uptrend. It is the exact opposite of the Morning Star pattern.",
+    "no"
+);
+let kicker = new Pattern(
+    "kicker",
+    "The Kicker",
+    "The Kicker is one of the most powerful signals of all, and is formed by two candles. The first candle moves in the direction of the current trend, and the second candle opens at the same price as the first opens, but goes in the opposite direction. A bullish Kicker is shown in the figure to the right, but a bearish kicker is also similarly strong.",
+    "no"
+);
+let shooting_star = new Pattern(
+    "shootingstar",
+    "Shooting Star",
+    "The Shooting Star is composed of one candle, with a small body and an upper shadow at least twice the size of the body. The Shooting Star is a top reversal signal, but needs a bearish day after to confirm the signal.",
+    "yes"
+);
 
 let simples = [black_marubozu, white_marubozu, closing_marubozu, opening_marubozu, spinning_top];
-let major_reverses = [doji_star, gravestone, dragonfly, bullish_engulfing, bearish_engulfing, hammer, hangingman, piercing, dark_cloud, bullish_harami, bearish_harami, morning_star];
+let major_reverses = [doji_star, gravestone, dragonfly, bullish_engulfing, bearish_engulfing, hammer, hangingman, piercing, dark_cloud, bullish_harami, bearish_harami, morning_star, evening_star, kicker, shooting_star];
 
 simples.forEach((p) => {
     SIMPLE.innerHTML += template(p.idname, p.title, p.description, p.conf);
@@ -481,4 +499,64 @@ let rightup = () => {
     line(160, 104, 160, 112);
     leftdown();
     rightup();
+}
+// *** e_star *** //
+{
+    load("e_star");
+    ctx.fillStyle = GREEN;
+    ctx.fillRect(88, 32, 16, 64);
+    line(96, 32, 96, 16);
+    line(96,96,96,104);
+    //ctx.fillRect(120, 104, 16, 12);
+    line(128, 24, 128, 30);
+    line(128, 12, 128, 6);
+    ctx.beginPath();
+    ctx.moveTo(120, 24);
+    ctx.lineTo(136, 24);
+    ctx.lineTo(136, 12);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = RED;
+    ctx.beginPath();
+    ctx.moveTo(120, 24);
+    ctx.lineTo(120, 12);
+    ctx.lineTo(136, 12);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillRect(152, 36, 16, 56);
+    line(160, 36, 160, 26);
+    line(160, 92, 160, 100);
+    leftup();
+    rightdown();
+}
+// *** kicker *** //
+{
+    load("kicker");
+    ctx.fillStyle = RED;
+    ctx.fillRect(104, 64, 16, 48);
+    ctx.fillStyle = GREEN;
+    ctx.fillRect(136, 32, 16, 32);
+    leftdown();
+    rightup();
+}
+// *** shooting star *** //
+{
+    load("shootingstar");
+    ctx.fillStyle = RED;
+    ctx.beginPath();
+    ctx.moveTo(120, 56);
+    ctx.lineTo(136, 56);
+    ctx.lineTo(136, 76);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = GREEN;
+    ctx.beginPath();
+    ctx.moveTo(120, 56);
+    ctx.lineTo(120, 76);
+    ctx.lineTo(136, 76);
+    ctx.closePath();
+    ctx.fill();
+    line(128, 56, 128, 16);
+    leftup();
+    rightdown();
 }
