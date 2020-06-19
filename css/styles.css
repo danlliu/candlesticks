@@ -64,6 +64,14 @@ li.dropdown {
 
 /* Sections */
 
+h1 {
+    font-size: 2em;
+    text-decoration: underline;
+}
+h2 {
+    font-size: 1.25em;
+}
+
 section > section {
     display: flex;
     width: 100%;
@@ -75,5 +83,9 @@ section > section {
 }
 
 .pattern {
-    min-width: 256px;
+    min-width: 258px;
+}
+
+canvas {
+    display: inline-block;
 }

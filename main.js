@@ -1,20 +1,32 @@
 const RED = "#E22E33";
 const GREEN = "#14854C";
 
-function template(idname, title, descr, conf, note = null) {
-    return `<section id="${idname}-sec">
+function template(p) {
+    let idname = p.idname;
+    let title = p.title;
+    let descr = p.description;
+    let conf = p.conf;
+    let note = p.note;
+    let numcanvases = p.frames;
+    let temp = `<section id="${idname}-sec">
             <div class="detail">
-                <p style="margin-top: 0"><b>${title}</b></p>
+                <h2 style="margin-top: 0"><b>${title}</b></h2>
                 <p>${descr}</p>
             </div>
-            <div class="pattern">
-                <canvas id="${idname}" width="256" height="128" style="border: 1px #000 solid"></canvas>
-            </div>
+            <div class="pattern">\n`;
+    for (var i = 0; i < numcanvases; ++i) {
+        temp += `<canvas id="${idname}${i}" width="256" height="128" style="border: 1px #000 solid"></canvas>\n`;
+        if (temp != numcanvases - 1) {
+            temp += "<br/>"
+        }
+    }
+    temp += `</div>
             <div class="confirmation" style="width: 30%">
                 <p>Confirmation: ${conf === "no" ? `<span style='font-weight: bolder'>${conf}</span>` : conf}</p>
                 ${note != null ? `<p></p><i>Note: </i>${note}</p>` : ""}
             </div>
-        </section><br/>\n`
+        </section><br/>\n`;
+    return temp;
 }
 
 function navlink(idname, title) {
@@ -28,13 +40,14 @@ const MAJOR_NAV_LIST = document.getElementById("major_rev_list");
 const SECONDARY = document.getElementById("secondary_rev");
 const SECONDARY_NAV_LIST = document.getElementById("secondary_rev_list");
 
-function Pattern(idname, title, description, confirm, note = null) {
+function Pattern(idname, title, description, confirm, note = null, numFrames = 1) {
     return {
         "idname": idname,
         "title": title,
         "description": description,
         "conf": confirm,
-        "note": note
+        "note": note,
+        "frames": numFrames
     }
 }
 
@@ -160,8 +173,10 @@ let evening_star = new Pattern(
 let kicker = new Pattern(
     "kicker",
     "The Kicker",
-    "The Kicker is one of the most powerful signals of all, and is formed by two candles. The first candle moves in the direction of the current trend, and the second candle opens at the same price as the first opens, but goes in the opposite direction. A bullish Kicker is shown in the figure to the right, but a bearish kicker is also similarly strong.",
-    "no"
+    "The Kicker is one of the most powerful signals of all, and is formed by two candles. The first candle moves in the direction of the current trend, and the second candle opens at the same price as the first opens, but goes in the opposite direction.",
+    "no",
+    null,
+    2
 );
 let shooting_star = new Pattern(
     "shootingstar",
@@ -180,7 +195,9 @@ let tristar = new Pattern(
     "tristar",
     "Tri Star",
     "The Tri Star is a strong but somewhat rare reversal signal. It consists of three Dojis, with the second Doji gapping above in a bullish reversal or below in a bearish reversal with respect to the first and third.",
-    "yes"
+    "yes",
+    null,
+    2
 );
 let threeblackcrows = new Pattern(
     "threecrow",
@@ -212,15 +229,15 @@ let major_reverses = [doji_star, gravestone, dragonfly, bullish_engulfing, beari
 let secondary_reverses = [tristar, threeblackcrows, threeidenticalcrows, twocrows, upsidegaptwocrows];
 
 simples.forEach((p) => {
-    SIMPLE.innerHTML += template(p.idname, p.title, p.description, p.conf, p.note);
+    SIMPLE.innerHTML += template(p);
     SIMPLE_NAV_LIST.innerHTML += navlink(p.idname, p.title);
 });
 major_reverses.forEach((p) => {
-    MAJOR.innerHTML += template(p.idname, p.title, p.description, p.conf, p.note);
+    MAJOR.innerHTML += template(p);
     MAJOR_NAV_LIST.innerHTML += navlink(p.idname, p.title);
 });
 secondary_reverses.forEach((p) => {
-    SECONDARY.innerHTML += template(p.idname, p.title, p.description, p.conf, p.note);
+    SECONDARY.innerHTML += template(p);
     SECONDARY_NAV_LIST.innerHTML += navlink(p.idname, p.title);
 });
 
@@ -283,21 +300,21 @@ let rightup = () => {
 {
 // *** bl_maru *** //
     {
-        load("bl_maru");
+        load("bl_maru0");
         ctx.fillStyle = RED;
         ctx.fillRect(120, 32, 16, 64);
         rightdown();
     }
 // *** wh_maru *** //
     {
-        load("wh_maru");
+        load("wh_maru0");
         ctx.fillStyle = GREEN;
         ctx.fillRect(120, 32, 16, 64);
         rightup();
     }
 // *** cl_maru *** //
     {
-        load("cl_maru");
+        load("cl_maru0");
         ctx.fillStyle = GREEN;
         ctx.fillRect(56, 32, 16, 64);
         ctx.beginPath();
@@ -347,7 +364,7 @@ let rightup = () => {
     }
 // *** op_maru *** //
     {
-        load("op_maru");
+        load("op_maru0");
         ctx.fillStyle = GREEN;
         ctx.fillRect(56, 32, 16, 64);
         ctx.beginPath();
@@ -397,7 +414,7 @@ let rightup = () => {
     }
 // *** sp_top *** //
     {
-        load("sp_top");
+        load("sp_top0");
         ctx.fillStyle = GREEN;
         ctx.fillRect(48, 56, 16, 16);
         ctx.beginPath();
@@ -431,7 +448,7 @@ let rightup = () => {
 {
 // *** doji_star *** //
     {
-        load("doji_star");
+        load("doji_star0");
         ctx.beginPath();
         ctx.moveTo(120, 64);
         ctx.lineTo(136, 64);
@@ -445,7 +462,7 @@ let rightup = () => {
     }
 // *** gravestone *** //
     {
-        load("gravestone");
+        load("gravestone0");
         ctx.beginPath();
         ctx.moveTo(120, 80);
         ctx.lineTo(136, 80);
@@ -459,7 +476,7 @@ let rightup = () => {
     }
 // *** dragonfly *** //
     {
-        load("dragonfly");
+        load("dragonfly0");
         ctx.beginPath();
         ctx.moveTo(120, 44);
         ctx.lineTo(136, 44);
@@ -474,7 +491,7 @@ let rightup = () => {
 
 // *** bullish engulfing *** //
     {
-        load("bul_engul");
+        load("bul_engul0");
         ctx.fillStyle = RED;
         ctx.fillRect(104, 40, 16, 48);
         line(112, 40, 112, 28);
@@ -488,7 +505,7 @@ let rightup = () => {
     }
 // *** bearish engulfing *** //
     {
-        load("bear_engul");
+        load("bear_engul0");
         ctx.fillStyle = GREEN;
         ctx.fillRect(104, 40, 16, 48);
         line(112, 40, 112, 16);
@@ -502,7 +519,7 @@ let rightup = () => {
     }
 // *** hammer *** //
     {
-        load("hammer");
+        load("hammer0");
         ctx.fillStyle = RED;
         //ctx.fillRect(120, 96, 16, 20);
         ctx.beginPath();
@@ -524,7 +541,7 @@ let rightup = () => {
     }
 // *** hangingman *** //
     {
-        load("hangingman");
+        load("hangingman0");
         ctx.fillStyle = RED;
         //ctx.fillRect(120, 16, 16, 20);
         ctx.beginPath();
@@ -546,7 +563,7 @@ let rightup = () => {
     }
 // *** piercing *** //
     {
-        load("piercing");
+        load("piercing0");
         ctx.fillStyle = RED;
         ctx.fillRect(104, 36, 16, 54);
         ctx.fillStyle = GREEN;
@@ -556,7 +573,7 @@ let rightup = () => {
     }
 // *** dark cloud cover *** //
     {
-        load("dark_cloud");
+        load("dark_cloud0");
         ctx.fillStyle = GREEN;
         ctx.fillRect(104, 36, 16, 48);
         ctx.fillStyle = RED;
@@ -566,7 +583,7 @@ let rightup = () => {
     }
 // *** bullish harami *** //
     {
-        load("bul_harami");
+        load("bul_harami0");
         ctx.fillStyle = RED;
         ctx.fillRect(104, 32, 16, 64);
         ctx.fillStyle = GREEN;
@@ -576,7 +593,7 @@ let rightup = () => {
     }
 // *** bearish harami *** //
     {
-        load("bear_harami");
+        load("bear_harami0");
         ctx.fillStyle = GREEN;
         ctx.fillRect(104, 32, 16, 64);
         ctx.fillStyle = RED;
@@ -586,7 +603,7 @@ let rightup = () => {
     }
 // *** m_star *** //
     {
-        load("m_star");
+        load("m_star0");
         ctx.fillStyle = RED;
         ctx.fillRect(88, 32, 16, 64);
         line(96, 32, 96, 16);
@@ -615,7 +632,7 @@ let rightup = () => {
     }
 // *** e_star *** //
     {
-        load("e_star");
+        load("e_star0");
         ctx.fillStyle = GREEN;
         ctx.fillRect(88, 32, 16, 64);
         line(96, 32, 96, 16);
@@ -644,7 +661,7 @@ let rightup = () => {
     }
 // *** kicker *** //
     {
-        load("kicker");
+        load("kicker0");
         ctx.fillStyle = RED;
         ctx.fillRect(104, 64, 16, 48);
         ctx.fillStyle = GREEN;
@@ -652,9 +669,18 @@ let rightup = () => {
         leftdown();
         rightup();
     }
+    {
+        load("kicker1");
+        ctx.fillStyle = GREEN;
+        ctx.fillRect(104, 32, 16, 32);
+        ctx.fillStyle = RED;
+        ctx.fillRect(136, 64, 16, 48);
+        leftup();
+        rightdown();
+    }
 // *** shooting star *** //
     {
-        load("shootingstar");
+        load("shootingstar0");
         ctx.fillStyle = RED;
         ctx.beginPath();
         ctx.moveTo(120, 56);
@@ -675,7 +701,7 @@ let rightup = () => {
     }
 // *** inverted hammer *** //
     {
-        load("inverthammer");
+        load("inverthammer0");
         ctx.fillStyle = RED;
         ctx.beginPath();
         ctx.moveTo(120, 96);
@@ -700,7 +726,7 @@ let rightup = () => {
 {
 // *** tristar *** //
     {
-        load("tristar");
+        load("tristar0");
 
         line(96, 64, 96, 48);
         line(88, 56, 104, 56);
@@ -714,9 +740,24 @@ let rightup = () => {
         leftup();
         rightdown();
     }
+    {
+        load("tristar1");
+
+        line(96, 64, 96, 48);
+        line(88, 56, 104, 56);
+
+        line(128, 80, 128, 64);
+        line(120, 72, 136, 72);
+
+        line(160, 64, 160, 48);
+        line(152, 56, 168, 56);
+
+        leftdown();
+        rightup();
+    }
 // *** threeblackcrows *** //
     {
-        load("threecrow");
+        load("threecrow0");
         ctx.fillStyle = RED;
         ctx.fillRect(88, 16, 16, 48);
         line(96, 16, 96, 8);
@@ -732,7 +773,7 @@ let rightup = () => {
     }
 // *** threeidenticalcrows *** //
     {
-        load("threeidcrow");
+        load("threeidcrow0");
         ctx.fillStyle = RED;
         ctx.fillRect(88, 8, 16, 36);
         line(96, 8, 96, 4);
@@ -748,7 +789,7 @@ let rightup = () => {
     }
 // *** twocrows *** //
     {
-        load("twocrows");
+        load("twocrows0");
         ctx.fillStyle = GREEN;
         ctx.fillRect(88, 48, 16, 64);
         line(96, 48, 96, 36);
@@ -764,7 +805,7 @@ let rightup = () => {
     }
     // *** upsidegaptwocrows *** //
     {
-        load("upsidetwocrows");
+        load("upsidetwocrows0");
         ctx.fillStyle = GREEN;
         ctx.fillRect(88, 64, 16, 56);
         line(96, 64, 96, 52);
