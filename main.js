@@ -1,7 +1,7 @@
 const RED = "#E22E33";
 const GREEN = "#14854C";
 
-function template(idname, title, descr, conf) {
+function template(idname, title, descr, conf, note = null) {
     return `<section id="${idname}-sec">
             <div class="detail">
                 <p style="margin-top: 0"><b>${title}</b></p>
@@ -12,6 +12,7 @@ function template(idname, title, descr, conf) {
             </div>
             <div class="sc">
                 <p>Confirmation: ${conf === "no" ? `<span style='font-weight: bolder'>${conf}</span>` : conf}</p>
+                ${note != null ? `<p></p><i>Note: </i>${note}</p>` : ""}
             </div>
         </section><br/>\n`
 }
@@ -27,12 +28,13 @@ const MAJOR_NAV_LIST = document.getElementById("major_rev_list");
 const SECONDARY = document.getElementById("secondary_rev");
 const SECONDARY_NAV_LIST = document.getElementById("secondary_rev_list");
 
-function Pattern(idname, title, description, confirm) {
+function Pattern(idname, title, description, confirm, note = null) {
     return {
         "idname": idname,
         "title": title,
         "description": description,
         "conf": confirm,
+        "note": note
     }
 }
 
@@ -95,13 +97,15 @@ let bullish_engulfing = new Pattern(
     "Bullish Engulfing",
     "The Bullish Engulfing pattern is a major reversal pattern after a downtrend where a red candle appears, and then the next day, a green candle opens lower than the previous close and closes higher than the previous open.\n" +
     "If the engulfing body engulfs the body and the shadows of the previous day, then the reversal is more likely to happen.",
-    "no"
+    "no",
+    "If the green candle engulfs a small body or a Doji, the color of the small body/Doji does not matter."
 );
 let bearish_engulfing = new Pattern(
     "bear_engul",
     "Bearish Engulfing",
     "The Bearish Engulfing pattern is a major reversal pattern after an uptrend where a green candle appears, and then the next day, a red candle engulfs the previous candle.",
-    "no"
+    "no",
+    "If the green candle engulfs a small body or a Doji, the color of the small body/Doji does not matter."
 );
 let hammer = new Pattern(
     "hammer",
@@ -184,15 +188,15 @@ let major_reverses = [doji_star, gravestone, dragonfly, bullish_engulfing, beari
 let secondary_reverses = [tristar];
 
 simples.forEach((p) => {
-    SIMPLE.innerHTML += template(p.idname, p.title, p.description, p.conf);
+    SIMPLE.innerHTML += template(p.idname, p.title, p.description, p.conf, p.note);
     SIMPLE_NAV_LIST.innerHTML += navlink(p.idname, p.title);
 });
 major_reverses.forEach((p) => {
-    MAJOR.innerHTML += template(p.idname, p.title, p.description, p.conf);
+    MAJOR.innerHTML += template(p.idname, p.title, p.description, p.conf, p.note);
     MAJOR_NAV_LIST.innerHTML += navlink(p.idname, p.title);
 });
 secondary_reverses.forEach((p) => {
-    SECONDARY.innerHTML += template(p.idname, p.title, p.description, p.conf);
+    SECONDARY.innerHTML += template(p.idname, p.title, p.description, p.conf, p.note);
     SECONDARY_NAV_LIST.innerHTML += navlink(p.idname, p.title);
 });
 
