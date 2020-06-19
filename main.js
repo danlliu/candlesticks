@@ -231,10 +231,25 @@ let meetinglines = new Pattern(
     null,
     2
 );
+let belthold = new Pattern(
+    "belthold",
+    "Belt Hold",
+    "The Belt Hold pattern is a single candlestick pattern where a candle with the opposite color to the trend gaps far away from the current trend, without any shadow at the opening end. The length of the candle indicates the significance of the reversal signal.",
+    "yes",
+    null,
+    2
+);
+let unique3river = new Pattern(
+    "unique3riverbottom",
+    "Unique Three River Bottom",
+    "The Unique Three River Bottom is a bullish pattern at the bottom of a downtrend. The first candle continues the trend. The second candle is a red candle that opens higher, drops down to a new low, then closes near the top of the trading range. The third day opens lower, but not as low as the low of the second day. It then closes higher, but below the second day's close, forming a green candle. This pattern is very rare.",
+    "yes",
+    null
+);
 
 let simples = [black_marubozu, white_marubozu, closing_marubozu, opening_marubozu, spinning_top];
 let major_reverses = [doji_star, gravestone, dragonfly, bullish_engulfing, bearish_engulfing, hammer, hangingman, piercing, dark_cloud, bullish_harami, bearish_harami, morning_star, evening_star, kicker, shooting_star, invert_hammer];
-let secondary_reverses = [tristar, threeblackcrows, threeidenticalcrows, twocrows, upsidegaptwocrows, meetinglines];
+let secondary_reverses = [tristar, threeblackcrows, threeidenticalcrows, twocrows, upsidegaptwocrows, meetinglines, belthold, unique3river];
 
 simples.forEach((p) => {
     SIMPLE.innerHTML += template(p);
@@ -850,5 +865,38 @@ let rightup = () => {
         line(136+8, 16, 136+8, 8);
         leftup();
         rightdown();
+    }
+    // *** belt hold *** //
+    {
+        load("belthold0");
+        ctx.fillStyle = GREEN;
+        ctx.fillRect(120, 84, 16, 32);
+        line(128, 84, 128, 80);
+        leftdown();
+        rightup();
+    }
+    {
+        load("belthold1");
+        ctx.fillStyle = RED;
+        ctx.fillRect(120, 16, 16, 32);
+        line(128, 48, 128, 56);
+        leftup();
+        rightdown();
+    }
+    // *** unique3riverbottom *** //
+    {
+        load("unique3riverbottom0");
+        ctx.fillStyle = RED;
+        ctx.fillRect(88, 36, 16, 48);
+        line(96, 36, 96, 20);
+        line(96, 84, 96, 88);
+        ctx.fillRect(120, 40, 16, 24);
+        line(128, 64, 128, 120);
+        ctx.fillStyle = GREEN;
+        ctx.fillRect(152, 92, 16, 32);
+        line(160, 92, 160, 84);
+        line(160, 124, 160, 126);
+        leftdown();
+        rightup();
     }
 }
