@@ -4,10 +4,8 @@ const GREEN = "#14854C";
 function template(idname, title, descr, conf) {
     return `<section id="${idname}-sec">
             <div class="detail">
-                <details>
-                    <summary>${title}</summary>
-                    <p>${descr}</p>
-                </details>
+                <p style="margin-top: 0"><b>${title}</b></p>
+                <p>${descr}</p>
             </div>
             <div class="pattern">
                 <canvas id="${idname}" width="256" height="128" style="border: 1px #000 solid"></canvas>
@@ -15,7 +13,7 @@ function template(idname, title, descr, conf) {
             <div class="sc">
                 <p>Confirmation: ${conf === "no" ? `<span style='font-weight: bolder'>${conf}</span>` : conf}</p>
             </div>
-        </section>\n`
+        </section><br/>\n`
 }
 
 function navlink(idname, title) {
@@ -216,12 +214,12 @@ let leftup = () => {
 };
 let rightdown = () => {
     ctx.strokeStyle = RED;
+    ctx.fillStyle = RED;
     ctx.beginPath();
     ctx.moveTo(184, 56);
     ctx.lineTo(224, 96);
     ctx.closePath();
     ctx.stroke();
-    ctx.strokeStyle = RED;
     ctx.beginPath();
     ctx.moveTo(224, 96);
     ctx.lineTo(224, 92);
@@ -237,7 +235,7 @@ let rightup = () => {
     ctx.lineTo(224, 32);
     ctx.closePath();
     ctx.stroke();
-    ctx.strokeStyle = GREEN;
+    ctx.fillStyle = GREEN;
     ctx.beginPath();
     ctx.moveTo(224, 32);
     ctx.lineTo(224, 36);
@@ -252,52 +250,114 @@ let rightup = () => {
     load("bl_maru");
     ctx.fillStyle = RED;
     ctx.fillRect(120, 32, 16, 64);
+    rightdown();
 }
 // *** wh_maru *** //
 {
     load("wh_maru");
     ctx.fillStyle = GREEN;
     ctx.fillRect(120, 32, 16, 64);
+    rightup();
 }
 // *** cl_maru *** //
 {
     load("cl_maru");
     ctx.fillStyle = GREEN;
-    ctx.fillRect(48, 32, 16, 64);
+    ctx.fillRect(56, 32, 16, 64);
     ctx.beginPath();
-    ctx.moveTo(56, 96);
-    ctx.lineTo(56, 112);
+    ctx.moveTo(64, 96);
+    ctx.lineTo(64, 112);
     ctx.closePath();
     ctx.stroke();
     ctx.fillStyle = "#000";
     ctx.fillText("or", 124, 64);
     ctx.fillStyle = RED;
-    ctx.fillRect(192, 32, 16, 64);
+    ctx.fillRect(184, 32, 16, 64);
     ctx.beginPath();
-    ctx.moveTo(200, 32);
-    ctx.lineTo(200, 16);
+    ctx.moveTo(192, 32);
+    ctx.lineTo(192, 16);
     ctx.closePath();
     ctx.stroke();
+
+    ctx.strokeStyle = GREEN;
+    ctx.beginPath();
+    ctx.moveTo(76, 72);
+    ctx.lineTo(96, 52);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fillStyle = GREEN;
+    ctx.beginPath();
+    ctx.moveTo(96, 52);
+    ctx.lineTo(96, 56);
+    ctx.lineTo(92, 52);
+    ctx.closePath();
+    ctx.fill();
+    ctx.strokeStyle = "#000";
+
+    ctx.strokeStyle = RED;
+    ctx.beginPath();
+    ctx.moveTo(204, 76);
+    ctx.lineTo(224, 96);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fillStyle = RED;
+    ctx.beginPath();
+    ctx.moveTo(224, 96);
+    ctx.lineTo(224, 92);
+    ctx.lineTo(220, 96);
+    ctx.closePath();
+    ctx.fill();
+    ctx.strokeStyle = "#000";
 }
 // *** op_maru *** //
 {
     load("op_maru");
     ctx.fillStyle = GREEN;
-    ctx.fillRect(48, 32, 16, 64);
+    ctx.fillRect(56, 32, 16, 64);
     ctx.beginPath();
-    ctx.moveTo(56, 32);
-    ctx.lineTo(56, 16);
+    ctx.moveTo(64, 32);
+    ctx.lineTo(64, 16);
     ctx.closePath();
     ctx.stroke();
     ctx.fillStyle = "#000";
     ctx.fillText("or", 124, 64);
     ctx.fillStyle = RED;
-    ctx.fillRect(192, 32, 16, 64);
+    ctx.fillRect(184, 32, 16, 64);
     ctx.beginPath();
-    ctx.moveTo(200, 96);
-    ctx.lineTo(200, 112);
+    ctx.moveTo(192, 96);
+    ctx.lineTo(192, 112);
     ctx.closePath();
     ctx.stroke();
+
+    ctx.strokeStyle = GREEN;
+    ctx.beginPath();
+    ctx.moveTo(76, 72);
+    ctx.lineTo(96, 52);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fillStyle = GREEN;
+    ctx.beginPath();
+    ctx.moveTo(96, 52);
+    ctx.lineTo(96, 56);
+    ctx.lineTo(92, 52);
+    ctx.closePath();
+    ctx.fill();
+    ctx.strokeStyle = "#000";
+
+    ctx.strokeStyle = RED;
+    ctx.beginPath();
+    ctx.moveTo(204, 76);
+    ctx.lineTo(224, 96);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fillStyle = RED;
+    ctx.beginPath();
+    ctx.moveTo(224, 96);
+    ctx.lineTo(224, 92);
+    ctx.lineTo(220, 96);
+    ctx.closePath();
+    ctx.fill();
+    ctx.strokeStyle = "#000";
 }
 // *** sp_top *** //
 {
