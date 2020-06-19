@@ -24,6 +24,8 @@ const SIMPLE = document.getElementById("simple");
 const SIMPLE_NAV_LIST = document.getElementById("simple_list");
 const MAJOR = document.getElementById("major_rev");
 const MAJOR_NAV_LIST = document.getElementById("major_rev_list");
+const SECONDARY = document.getElementById("secondary_rev");
+const SECONDARY_NAV_LIST = document.getElementById("secondary_rev_list");
 
 function Pattern(idname, title, description, confirm) {
     return {
@@ -189,6 +191,10 @@ major_reverses.forEach((p) => {
     MAJOR.innerHTML += template(p.idname, p.title, p.description, p.conf);
     MAJOR_NAV_LIST.innerHTML += navlink(p.idname, p.title);
 });
+secondary_reverses.forEach((p) => {
+    SECONDARY.innerHTML += template(p.idname, p.title, p.description, p.conf);
+    SECONDARY_NAV_LIST.innerHTML += navlink(p.idname, p.title);
+});
 
 // Draw
 let ctx;
@@ -204,19 +210,19 @@ let leftdown = () => {
     ctx.strokeStyle = RED;
     line(32, 16, 32, 48);
     line (56, 36, 56, 68);
-    line(80, 48, 80, 80);
+    //line(80, 48, 80, 80);
 };
 let leftup = () => {
     ctx.strokeStyle = GREEN;
     line(32, 112, 32, 80);
     line (56, 92, 56, 60);
-    line(80, 80, 80, 48);
+    //line(80, 80, 80, 48);
 };
 let rightdown = () => {
     ctx.strokeStyle = RED;
     ctx.fillStyle = RED;
     ctx.beginPath();
-    ctx.moveTo(184, 56);
+    ctx.moveTo(194, 66);
     ctx.lineTo(224, 96);
     ctx.closePath();
     ctx.stroke();
@@ -231,7 +237,7 @@ let rightdown = () => {
 let rightup = () => {
     ctx.strokeStyle = GREEN;
     ctx.beginPath();
-    ctx.moveTo(184, 72);
+    ctx.moveTo(194, 62);
     ctx.lineTo(224, 32);
     ctx.closePath();
     ctx.stroke();
@@ -659,7 +665,16 @@ let rightup = () => {
 // *** tristar *** //
 {
     load("tristar");
-    
+
+    line(96, 64, 96, 48);
+    line (88, 56, 104, 56);
+
+    line(128, 52, 128, 36);
+    line (120, 44, 136, 44);
+
+    line(160, 64, 160, 48);
+    line (152, 56, 168, 56);
+
     leftup();
     rightdown();
 }
