@@ -30,7 +30,7 @@ function template(p) {
 }
 
 function navlink(idname, title) {
-    return `<a href="#${idname}">${title}</a>`
+    return `<a href="#${idname}-sec">${title}</a>`
 }
 
 const SIMPLE = document.getElementById("simple");
