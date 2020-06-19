@@ -246,10 +246,36 @@ let unique3river = new Pattern(
     "yes",
     null
 );
+let breakaway = new Pattern(
+    "breakaway",
+    "Breakaway",
+    "The Breakaway pattern starts with a candle representing the current trend, followed by a second candle of the same color that gaps away. The third candle can be either color, but indicates a continuation in the trend. The fourth day has the same color as the trend, and continues the trend. The fifth day opens opposite the current trend and closes into the gap.",
+    "no",
+    null,
+    2
+);
+let threeinup = new Pattern(
+    "threeinup",
+    "Three Inside Up",
+    "The Three Inside Up pattern consists of a bottom reversal Harami pattern followed by a third candle confirming the reversal. The third day should close higher than the open of the first day.",
+    "no"
+);
+let threeindown = new Pattern(
+    "threeindown",
+    "Three Inside Down",
+    "The Three Inside Down pattern consists of a top reversal Harami pattern followed by a third candle confirming the reversal. The third day should close lower than the open of the first day",
+    "no"
+);
+let threestars = new Pattern(
+    "threestars",
+    "Three Stars in the South",
+    "The Three Stars in the South pattern is a bottom reversal pattern that is composed of three red candles, which show the trend slowing down. The first day has a lower shadow showing that buying is stepping in, and the second day is a smaller version of the first day. The third day is a Marubozu, without any shadows.",
+    "yes"
+);
 
 let simples = [black_marubozu, white_marubozu, closing_marubozu, opening_marubozu, spinning_top];
 let major_reverses = [doji_star, gravestone, dragonfly, bullish_engulfing, bearish_engulfing, hammer, hangingman, piercing, dark_cloud, bullish_harami, bearish_harami, morning_star, evening_star, kicker, shooting_star, invert_hammer];
-let secondary_reverses = [tristar, threeblackcrows, threeidenticalcrows, twocrows, upsidegaptwocrows, meetinglines, belthold, unique3river];
+let secondary_reverses = [tristar, threeblackcrows, threeidenticalcrows, twocrows, upsidegaptwocrows, meetinglines, belthold, unique3river, breakaway, threeinup, threeindown, threestars];
 
 simples.forEach((p) => {
     SIMPLE.innerHTML += template(p);
@@ -747,7 +773,7 @@ let rightup = () => {
 
 // Secondary Rev
 {
-// *** tristar *** //
+    // *** tristar *** //
     {
         load("tristar0");
 
@@ -778,7 +804,7 @@ let rightup = () => {
         leftdown();
         rightup();
     }
-// *** threeblackcrows *** //
+    // *** threeblackcrows *** //
     {
         load("threecrow0");
         ctx.fillStyle = RED;
@@ -794,7 +820,7 @@ let rightup = () => {
         leftup();
         rightdown();
     }
-// *** threeidenticalcrows *** //
+    // *** threeidenticalcrows *** //
     {
         load("threeidcrow0");
         ctx.fillStyle = RED;
@@ -810,7 +836,7 @@ let rightup = () => {
         leftup();
         rightdown();
     }
-// *** twocrows *** //
+    // *** twocrows *** //
     {
         load("twocrows0");
         ctx.fillStyle = GREEN;
@@ -896,6 +922,123 @@ let rightup = () => {
         ctx.fillRect(152, 92, 16, 32);
         line(160, 92, 160, 84);
         line(160, 124, 160, 126);
+        leftdown();
+        rightup();
+    }
+    // *** breakaway *** //
+    {
+        load("breakaway0");
+        ctx.fillStyle = RED;
+        ctx.fillRect(72, 16, 16, 48);
+        line(80, 16, 80, 8);
+        line(80, 64, 80, 72);
+        ctx.fillRect(96, 72, 16, 32);
+        line(104, 72, 104, 64);
+        line(104, 104, 104, 110);
+        ctx.fillRect(144, 104, 16, 20);
+        line(152, 104, 152, 98);
+        line(152, 124, 152, 126);
+        //ctx.fillRect(120, 96, 16, 24);
+        line (128, 96, 128, 88);
+        line(128, 120, 128, 124);
+        ctx.beginPath();
+        ctx.moveTo(120, 96);
+        ctx.lineTo(136, 96);
+        ctx.lineTo(136, 120);
+        ctx.closePath();
+        ctx.fill();
+        ctx.fillStyle = GREEN;
+        ctx.beginPath();
+        ctx.moveTo(120, 96);
+        ctx.lineTo(120, 120);
+        ctx.lineTo(136, 120);
+        ctx.closePath();
+        ctx.fill();
+        ctx.fillRect(168, 68, 16, 48);
+        line(176, 68, 176, 60);
+        line(176, 116, 176, 120);
+        leftdown();
+        rightup();
+    }
+    {
+        load("breakaway1");
+        ctx.fillStyle = GREEN;
+        ctx.fillRect(72, 64, 16, 48);
+        line(80, 64, 80, 56);
+        line(80, 112, 80, 116);
+        ctx.fillRect(96, 24, 16, 32);
+        line(104, 24, 104, 20);
+        line(104, 56, 104, 64);
+        ctx.fillRect(144, 4, 16, 20);
+        line(152, 4, 152, 2);
+        line(152, 24, 152, 32);
+        //ctx.fillRect(120, 8, 16, 24);
+        line (128, 8, 128, 4);
+        line(128, 32, 128, 40);
+        ctx.fillStyle = RED;
+        ctx.beginPath();
+        ctx.moveTo(120, 8);
+        ctx.lineTo(136, 8);
+        ctx.lineTo(136, 32);
+        ctx.closePath();
+        ctx.fill();
+        ctx.fillStyle = GREEN;
+        ctx.beginPath();
+        ctx.moveTo(120, 8);
+        ctx.lineTo(120, 32);
+        ctx.lineTo(136, 32);
+        ctx.closePath();
+        ctx.fill();
+        ctx.fillStyle = RED;
+        ctx.fillRect(168, 12, 16, 48);
+        line(176, 68, 176, 60);
+        line(176, 12, 176, 4);
+        leftup();
+        rightdown();
+    }
+    // *** threeinup *** //
+    {
+        load("threeinup0");
+        ctx.fillStyle = RED;
+        ctx.fillRect(88, 48, 16, 48);
+        line(96, 48, 96, 40);
+        line(96, 96, 96, 102);
+        ctx.fillStyle = GREEN;
+        ctx.fillRect(120, 54, 16, 32);
+        line(128, 54, 128, 48);
+        line(128, 86, 128, 94);
+        ctx.fillRect(152, 36, 16, 44);
+        line(160, 36, 160, 32);
+        line(160, 80, 160, 88);
+        leftdown();
+        rightup();
+    }
+    // *** threeindown *** //
+    {
+        load("threeindown0");
+        ctx.fillStyle = GREEN;
+        ctx.fillRect(88, 24, 16, 54);
+        line(96, 24, 96, 16);
+        line(96, 78, 96, 84);
+        ctx.fillStyle = RED;
+        ctx.fillRect(120, 32, 16, 32);
+        line(128, 32, 128, 24);
+        line(128, 64, 128, 68);
+        ctx.fillRect(152, 56, 16, 32);
+        line(160, 56, 160, 48);
+        line(160, 88, 160, 94);
+        leftup();
+        rightdown();
+    }
+    // *** threestars *** //
+    {
+        load("threestars0");
+        ctx.fillStyle = RED;
+        ctx.fillRect(88, 32, 16, 48);
+        line(96, 80, 96, 108);
+        ctx.fillRect(120, 48, 16, 36);
+        line(128, 84, 128, 104);
+        ctx.fillRect(152, 88, 16, 8);
         leftdown();
         rightup();
     }

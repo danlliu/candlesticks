@@ -61,7 +61,7 @@
       <option name="presentableId" value="Default" />
       <updated>1592319116456</updated>
       <workItem from="1592319119351" duration="18738000" />
-      <workItem from="1592578564634" duration="9030000" />
+      <workItem from="1592578564634" duration="11646000" />
     </task>
     <servers />
   </component>
@@ -69,13 +69,17 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="500" y="357" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1592585502870">
+    <state x="181" y="75" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1592597190361">
       <screen x="0" y="23" width="1440" height="822" />
     </state>
-    <state x="500" y="357" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.822@0.23.1440.822" timestamp="1592585502870" />
-    <state x="382" y="169" width="670" height="676" key="search.everywhere.popup" timestamp="1592589545126">
+    <state x="181" y="75" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.822@0.23.1440.822" timestamp="1592597190361" />
+    <state x="500" y="357" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1592595135798">
       <screen x="0" y="23" width="1440" height="822" />
     </state>
-    <state x="382" y="169" width="670" height="676" key="search.everywhere.popup/0.23.1440.822@0.23.1440.822" timestamp="1592589545126" />
+    <state x="500" y="357" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.822@0.23.1440.822" timestamp="1592595135798" />
+    <state x="382" y="169" width="670" height="676" key="search.everywhere.popup" timestamp="1592597038915">
+      <screen x="0" y="23" width="1440" height="822" />
+    </state>
+    <state x="382" y="169" width="670" height="676" key="search.everywhere.popup/0.23.1440.822@0.23.1440.822" timestamp="1592597038915" />
   </component>
 </project>
