@@ -10,7 +10,7 @@ function template(p) {
     let numcanvases = p.frames;
     let temp = `<section id="${idname}-sec">
             <div class="detail">
-                <h2 style="margin-top: 0"><b>${title}</b></h2>
+                <h2 style="margin-top: 0">${title}:</h2>
                 <p>${descr}</p>
             </div>
             <div class="pattern">\n`;
@@ -277,11 +277,23 @@ let threewhitesoldiers = new Pattern(
     "Three White Soldiers",
     "The Three White Soldiers is a bottom reversal pattern that is composed of three green candles, each opening within the previous candle's body but closing at a new high.",
     "no"
-)
+);
+let advance = new Pattern(
+    "advance",
+    "Advance Block",
+    "The Advance Block is a top reversal pattern that looks similar to the Three Stars in the South pattern, but reversed. The Advance Block consists of three green candles, with the bodies getting smaller and the upper shadows increasing in length from the first to third candle. Each candle opens in the previous day's body, and still closes higher.",
+    "advised"
+);
+let deliberation = new Pattern(
+    "deliberation",
+    "Deliberation",
+    "The Deliberation pattern consists of two long green candles followed by a smaller green body. This shows that the upward trend is slowing down.",
+    "advised"
+);
 
 let simples = [black_marubozu, white_marubozu, closing_marubozu, opening_marubozu, spinning_top];
 let major_reverses = [doji_star, gravestone, dragonfly, bullish_engulfing, bearish_engulfing, hammer, hangingman, piercing, dark_cloud, bullish_harami, bearish_harami, morning_star, evening_star, kicker, shooting_star, invert_hammer];
-let secondary_reverses = [tristar, threeblackcrows, threeidenticalcrows, twocrows, upsidegaptwocrows, meetinglines, belthold, unique3river, breakaway, threeinup, threeindown, threestars, threewhitesoldiers];
+let secondary_reverses = [tristar, threeblackcrows, threeidenticalcrows, twocrows, upsidegaptwocrows, meetinglines, belthold, unique3river, breakaway, threeinup, threeindown, threestars, threewhitesoldiers, advance, deliberation];
 
 simples.forEach((p) => {
     SIMPLE.innerHTML += template(p);
@@ -1063,5 +1075,37 @@ let rightup = () => {
         line(160, 68, 160, 74);
         leftdown();
         rightup();
+    }
+    // *** advance block *** //
+    {
+        load("advance0");
+        ctx.fillStyle = GREEN;
+        ctx.fillRect(88, 64, 16, 48);
+        line(96, 64, 96, 56);
+        line(96, 112, 96, 120);
+        ctx.fillRect(120, 48, 16, 32);
+        line(128, 48, 128, 32);
+        line(128, 80, 128, 88);
+        ctx.fillRect(152, 32, 16, 24);
+        line(160, 32, 160, 8);
+        line(160, 56, 160, 64);
+        leftup();
+        rightdown();
+    }
+    // *** deliberation *** //
+    {
+        load("deliberation0");
+        ctx.fillStyle = GREEN;
+        ctx.fillRect(88, 64, 16, 48);
+        line(96, 64, 96, 48);
+        line(96, 112, 96, 120);
+        ctx.fillRect(120, 48, 16, 48);
+        line(128, 48, 128, 40);
+        line(128, 96, 128, 100);
+        ctx.fillRect(152, 32, 16, 16);
+        line(160, 32, 160, 28);
+        line(160, 48, 160, 54);
+        leftup();
+        rightdown();
     }
 }
