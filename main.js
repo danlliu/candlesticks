@@ -13,7 +13,7 @@ function template(idname, title, descr, conf) {
                 <canvas id="${idname}" width="256" height="128" style="border: 1px #000 solid"></canvas>
             </div>
             <div class="sc">
-                <p>Confirmation: ${conf}</p>
+                <p>Confirmation: ${conf === "no" ? `<span style='font-weight: bolder'>${conf}</span>` : conf}</p>
             </div>
         </section>\n`
 }
@@ -41,25 +41,25 @@ let black_marubozu = new Pattern(
     "bl_maru",
     "Black Marubozu",
     "The black marubozu is a weak indicator of bearish continuation or bullish reversal. A long red candle can indicate the final sell-off of a stock, leading to a bullish reversal.\n",
-    "not necessary"
+    "no"
 );
 let white_marubozu = new Pattern(
     "wh_maru",
     "White Marubozu",
     "The white marubozu is a very strong indicator of bullish continuation or bearish reversal. Typically, a long green candle marks the beginning of an uptrend.",
-    "not necessary"
+    "no"
 );
 let closing_marubozu = new Pattern(
     "cl_maru",
     "Closing Marubozu",
     "The closing marubozu has no shadow at its closing end, and is a strong signal in both cases for the direction they represent.",
-    "not necessary"
+    "no"
 );
 let opening_marubozu = new Pattern(
     "op_maru",
     "Opening Marubozu",
     "The opening marubozu has no shadow at its opening end. It also is a strong signal, but not as strong as the closing marubozu.",
-    "not necessary"
+    "no"
 );
 let spinning_top = new Pattern(
     "sp_top",
@@ -95,13 +95,13 @@ let bullish_engulfing = new Pattern(
     "Bullish Engulfing",
     "The Bullish Engulfing pattern is a major reversal pattern after a downtrend where a red candle appears, and then the next day, a green candle opens lower than the previous close and closes higher than the previous open.\n" +
     "If the engulfing body engulfs the body and the shadows of the previous day, then the reversal is more likely to happen.",
-    "not necessary, but can be done"
+    "no"
 );
 let bearish_engulfing = new Pattern(
     "bear_engul",
     "Bearish Engulfing",
     "The Bearish Engulfing pattern is a major reversal pattern after an uptrend where a green candle appears, and then the next day, a red candle engulfs the previous candle.",
-    "not necessary, but can be done"
+    "no"
 );
 let hammer = new Pattern(
     "hammer",
@@ -120,14 +120,14 @@ let hangingman = new Pattern(
 let piercing = new Pattern(
     "piercing",
     "Piercing",
-    "The Piercing pattern is formed after a downtrend with a red candle followed by a green candle that opens below the low of the previous day and closes more than midway up the red candle. The longer the candles, the more forceful the reversal.",
-    "no, but large volume is good"
+    "The Piercing pattern is formed after a downtrend with a red candle followed by a green candle that opens below the low of the previous day and closes more than midway up the red candle. The longer the candles, the more forceful the reversal. Large volume is a strong signal for a reversal.",
+    "no"
 );
 let dark_cloud = new Pattern(
     "dark_cloud",
     "Dark Cloud Cover",
-    "The Dark Could Cover pattern is the bearish version of the Piercing pattern, with a green candle at the end of an uptrend and a red candle opening higher and closing more than halfway down the green candle.",
-    "no, but large volume is good"
+    "The Dark Could Cover pattern is the bearish version of the Piercing pattern, with a green candle at the end of an uptrend and a red candle opening higher and closing more than halfway down the green candle. Large volume is a strong signal for a reversal.",
+    "no"
 );
 let bullish_harami = new Pattern(
     "bul_harami",
@@ -165,9 +165,23 @@ let shooting_star = new Pattern(
     "The Shooting Star is composed of one candle, with a small body and an upper shadow at least twice the size of the body. The Shooting Star is a top reversal signal, but needs a bearish day after to confirm the signal.",
     "yes"
 );
+let invert_hammer = new Pattern(
+    "inverthammer",
+    "Inverted Hammer",
+    "The Inverted Hammer is composed of one candle with a small body and an upper shadow at least twice the size of the body. The Inverted Hammer appears at the bottom of a trend, and signifies a possible reversal. It needs a bullish day after to confirm the signal.",
+    "yes"
+);
+
+let tristar = new Pattern(
+    "tristar",
+    "Tri Star",
+    "The Tri Star is a strong but somewhat rare reversal signal. It consists of three Dojis, with the second Doji gapping above in a bullish reversal or below in a bearish reversal with respect to the first and third.",
+    "yes"
+)
 
 let simples = [black_marubozu, white_marubozu, closing_marubozu, opening_marubozu, spinning_top];
-let major_reverses = [doji_star, gravestone, dragonfly, bullish_engulfing, bearish_engulfing, hammer, hangingman, piercing, dark_cloud, bullish_harami, bearish_harami, morning_star, evening_star, kicker, shooting_star];
+let major_reverses = [doji_star, gravestone, dragonfly, bullish_engulfing, bearish_engulfing, hammer, hangingman, piercing, dark_cloud, bullish_harami, bearish_harami, morning_star, evening_star, kicker, shooting_star, invert_hammer];
+let secondary_reverses = [tristar];
 
 simples.forEach((p) => {
     SIMPLE.innerHTML += template(p.idname, p.title, p.description, p.conf);
@@ -557,6 +571,35 @@ let rightup = () => {
     ctx.closePath();
     ctx.fill();
     line(128, 56, 128, 16);
+    leftup();
+    rightdown();
+}
+// *** inverted hammer *** //
+{
+    load("inverthammer");
+    ctx.fillStyle = RED;
+    ctx.beginPath();
+    ctx.moveTo(120, 96);
+    ctx.lineTo(136, 96);
+    ctx.lineTo(136, 116);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = GREEN;
+    ctx.beginPath();
+    ctx.moveTo(120, 96);
+    ctx.lineTo(120, 116);
+    ctx.lineTo(136, 116);
+    ctx.closePath();
+    ctx.fill();
+    line(128, 96, 128, 56);
+    leftdown();
+    rightup();
+}
+
+// *** tristar *** //
+{
+    load("tristar");
+    
     leftup();
     rightdown();
 }
