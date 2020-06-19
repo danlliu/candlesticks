@@ -272,10 +272,16 @@ let threestars = new Pattern(
     "The Three Stars in the South pattern is a bottom reversal pattern that is composed of three red candles, which show the trend slowing down. The first day has a lower shadow showing that buying is stepping in, and the second day is a smaller version of the first day. The third day is a Marubozu, without any shadows.",
     "yes"
 );
+let threewhitesoldiers = new Pattern(
+    "threesoldiers",
+    "Three White Soldiers",
+    "The Three White Soldiers is a bottom reversal pattern that is composed of three green candles, each opening within the previous candle's body but closing at a new high.",
+    "no"
+)
 
 let simples = [black_marubozu, white_marubozu, closing_marubozu, opening_marubozu, spinning_top];
 let major_reverses = [doji_star, gravestone, dragonfly, bullish_engulfing, bearish_engulfing, hammer, hangingman, piercing, dark_cloud, bullish_harami, bearish_harami, morning_star, evening_star, kicker, shooting_star, invert_hammer];
-let secondary_reverses = [tristar, threeblackcrows, threeidenticalcrows, twocrows, upsidegaptwocrows, meetinglines, belthold, unique3river, breakaway, threeinup, threeindown, threestars];
+let secondary_reverses = [tristar, threeblackcrows, threeidenticalcrows, twocrows, upsidegaptwocrows, meetinglines, belthold, unique3river, breakaway, threeinup, threeindown, threestars, threewhitesoldiers];
 
 simples.forEach((p) => {
     SIMPLE.innerHTML += template(p);
@@ -1039,6 +1045,22 @@ let rightup = () => {
         ctx.fillRect(120, 48, 16, 36);
         line(128, 84, 128, 104);
         ctx.fillRect(152, 88, 16, 8);
+        leftdown();
+        rightup();
+    }
+    // *** threewhitesoldiers *** //
+    {
+        load("threesoldiers0");
+        ctx.fillStyle = GREEN;
+        ctx.fillRect(88, 80, 16, 36);
+        line(96, 80, 96, 72);
+        line(96, 116, 96, 120);
+        ctx.fillRect(120, 56, 16, 36);
+        line(128, 56, 128, 48);
+        line(128, 92, 128, 100);
+        ctx.fillRect(152, 32, 16, 36);
+        line(160, 32, 160, 24);
+        line(160, 68, 160, 74);
         leftdown();
         rightup();
     }
