@@ -202,7 +202,7 @@ let tristar = new Pattern(
 let threeblackcrows = new Pattern(
     "threecrow",
     "Three Black Crows",
-    "The Three Black Crows pattern occurs after an uptrend, and consists of three black candles opening within the body of the previous and steadily going downward, each closing near the low of the day.",
+    "The Three Black Crows pattern occurs after an uptrend, and consists of three red candles opening within the body of the previous and steadily going downward, each closing near the low of the day.",
     "no"
 );
 let threeidenticalcrows = new Pattern(
@@ -214,19 +214,27 @@ let threeidenticalcrows = new Pattern(
 let twocrows = new Pattern(
     "twocrows",
     "Two Crows",
-    "The Two Crows pattern is a three-day top reversal pattern. It starts with a white candle. The next day, the price gaps up to create a small black candle. This candle pulls down but cannot fill the gap. The third day, another black candle forms and fills the gap, closing within the body of the first white candle.",
+    "The Two Crows pattern is a three-day top reversal pattern. It starts with a green candle. The next day, the price gaps up to create a small red candle. This candle pulls down but cannot fill the gap. The third day, another red candle forms and fills the gap, closing within the body of the first green candle.",
     "yes"
 );
 let upsidegaptwocrows = new Pattern(
     "upsidetwocrows",
     "Upside Gap Two Crows",
-    "The Upside Gap Two Crows is a three-day top reversal pattern, starting with a white candle, followed by a black candle gapping up but not filling the gap. The third day has a black candle that opens higher than the second day's open but closes below the second day's close, engulfing the second day. However, the third candle does not close below the close of the first day.",
+    "The Upside Gap Two Crows is a three-day top reversal pattern, starting with a green candle, followed by a red candle gapping up but not filling the gap. The third day has a red candle that opens higher than the second day's open but closes below the second day's close, engulfing the second day. However, the third candle does not close below the close of the first day.",
     "yes"
-)
+);
+let meetinglines = new Pattern(
+    "meetinglines",
+    "Meeting Lines",
+    "The Meeting Lines pattern is where two opposite colored candles have the same closing price. Both candles should be long days, and the longer the candles, the more likely the reversal.",
+    "yes",
+    null,
+    2
+);
 
 let simples = [black_marubozu, white_marubozu, closing_marubozu, opening_marubozu, spinning_top];
 let major_reverses = [doji_star, gravestone, dragonfly, bullish_engulfing, bearish_engulfing, hammer, hangingman, piercing, dark_cloud, bullish_harami, bearish_harami, morning_star, evening_star, kicker, shooting_star, invert_hammer];
-let secondary_reverses = [tristar, threeblackcrows, threeidenticalcrows, twocrows, upsidegaptwocrows];
+let secondary_reverses = [tristar, threeblackcrows, threeidenticalcrows, twocrows, upsidegaptwocrows, meetinglines];
 
 simples.forEach((p) => {
     SIMPLE.innerHTML += template(p);
@@ -817,6 +825,29 @@ let rightup = () => {
         ctx.fillRect(152, 20, 16, 36);
         line(160, 24, 160, 18);
         line(160, 56, 160, 60);
+        leftup();
+        rightdown();
+    }
+    // *** meetinglines *** //
+    {
+        load("meetinglines0");
+        ctx.fillStyle = RED;
+        ctx.fillRect(104, 16, 16, 48);
+        line(112, 16, 112, 8);
+        ctx.fillStyle = GREEN;
+        ctx.fillRect(136, 64, 16, 48);
+        line(136+8, 112, 136+8, 118);
+        leftdown();
+        rightup();
+    }
+    {
+        load("meetinglines1");
+        ctx.fillStyle = GREEN;
+        ctx.fillRect(104, 64, 16, 48);
+        line(112, 112, 112, 116);
+        ctx.fillStyle = RED;
+        ctx.fillRect(136, 16, 16, 48);
+        line(136+8, 16, 136+8, 8);
         leftup();
         rightdown();
     }

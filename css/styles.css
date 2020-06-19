@@ -89,3 +89,7 @@ section > section {
 canvas {
     display: inline-block;
 }
+
+footer {
+    font-size: small;
+}
