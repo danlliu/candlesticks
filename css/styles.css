@@ -88,32 +88,36 @@ section > section {
     justify-content: space-between;
 }
 @media only screen and (max-width: 767px) {
+    section > section {
+        margin-top: 8px;
+    }
     .detail {
         width: 100%;
     }
     .pattern {
         min-height: 130px;
-        width: 40%;
+        width: 260px;
     }
     .confirmation {
         margin-left: 16px;
-        width: 30%;
         font-size: x-large;
         height: 130px;
     }
 }
 
 @media only screen and (max-device-width: 511px) {
+    section > section {
+        margin-top: 8px;
+    }
     .detail {
         width: 100%;
     }
     .pattern {
         min-height: 130px;
-        width: 40%;
+        width: 260px;
     }
     .confirmation {
         margin-left: 16px;
-        width: 30%;
         font-size: x-large;
         height: 130px;
     }
