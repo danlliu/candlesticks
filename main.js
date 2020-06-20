@@ -21,7 +21,7 @@ function template(p) {
         }
     }
     temp += `</div>
-            <div class="confirmation" style="width: 30%">
+            <div class="confirmation">
                 <p>Confirmation: ${conf === "no" ? `<span style='font-weight: bolder'>${conf}</span>` : conf}</p>
                 ${note != null ? `<p></p><i>Note: </i>${note}</p>` : ""}
             </div>
@@ -290,10 +290,23 @@ let deliberation = new Pattern(
     "The Deliberation pattern consists of two long green candles followed by a smaller green body. This shows that the upward trend is slowing down.",
     "advised"
 );
+let concealbabyswallow = new Pattern(
+    "concealbabyswallow",
+    "Concealing Baby Swallow",
+    "The Concealing Baby Swallow is a bottom reversal occuring after a downtrend. It starts with two red Marubozus. The third day is a Reverse Hammer, which shows that the downtrend is slowing down. The third day gaps down to open but trades up into the body of the second day. The fourth day is a red candle that completely engulfs the Reverse Hammer, including its shadows. After this point, expect buying to start appearing. This pattern is very rare.",
+    "no"
+);
+let sticksandwich = new Pattern(
+    "sticksandwich",
+    "Stick Sandwich",
+    "The Stick Sandwich consists of two red candles with a green candle in between. The two red candle close at the same price, while the green candle opens above the first day's close and closes above the first day's open. The final red candle completely engulfs the green candle.",
+    "yes"
+)
+
 
 let simples = [black_marubozu, white_marubozu, closing_marubozu, opening_marubozu, spinning_top];
 let major_reverses = [doji_star, gravestone, dragonfly, bullish_engulfing, bearish_engulfing, hammer, hangingman, piercing, dark_cloud, bullish_harami, bearish_harami, morning_star, evening_star, kicker, shooting_star, invert_hammer];
-let secondary_reverses = [tristar, threeblackcrows, threeidenticalcrows, twocrows, upsidegaptwocrows, meetinglines, belthold, unique3river, breakaway, threeinup, threeindown, threestars, threewhitesoldiers, advance, deliberation];
+let secondary_reverses = [tristar, threeblackcrows, threeidenticalcrows, twocrows, upsidegaptwocrows, meetinglines, belthold, unique3river, breakaway, threeinup, threeindown, threestars, threewhitesoldiers, advance, deliberation, concealbabyswallow, sticksandwich];
 
 simples.forEach((p) => {
     SIMPLE.innerHTML += template(p);
@@ -1107,5 +1120,29 @@ let rightup = () => {
         line(160, 48, 160, 54);
         leftup();
         rightdown();
+    }
+    // *** concealbabyswallow *** //
+    {
+        load("concealbabyswallow0");
+        ctx.fillStyle = RED;
+        ctx.fillRect(72, 32, 16, 48);
+        ctx.fillRect(104, 64, 16, 32);
+        ctx.fillRect(136, 104, 16, 12);
+        line(144, 104, 144, 72);
+        ctx.fillRect(168, 80, 16, 44);
+        leftdown();
+        rightup();
+    }
+    // *** sticksandwich *** //
+    {
+        load("sticksandwich0");
+        ctx.fillStyle = RED;
+        ctx.fillRect(88, 64, 16, 48);
+        line(96, 64, 96, 56);
+        ctx.fillRect(152, 40, 16, 72);
+        ctx.fillStyle = GREEN;
+        ctx.fillRect(120, 48, 16, 48);
+        leftdown();
+        rightup();
     }
 }

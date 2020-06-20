@@ -55,8 +55,15 @@ li.dropdown {
     background-color: darkgrey;
 }
 
-#major_rev_list, #secondary_rev_list {
+#major_rev_list {
     columns: 2;
+}
+
+#secondary_rev_list {
+    columns: 3;
+}
+
+#major_rev_list, #secondary_rev_list {
     height: 336px;
     column-fill: auto;
     -webkit-column-break-inside: avoid;
@@ -86,6 +93,10 @@ section > section {
 
 .pattern {
     min-width: 258px;
+}
+
+.confirmation {
+    width: 30%;
 }
 
 canvas {
