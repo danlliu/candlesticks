@@ -90,6 +90,7 @@ section > section {
 @media only screen and (max-width: 767px) {
     section > section {
         margin-top: 8px;
+        justify-content: left;
     }
     .detail {
         width: 100%;
@@ -100,7 +101,6 @@ section > section {
     }
     .confirmation {
         margin-left: 16px;
-        font-size: x-large;
         min-height: 130px;
     }
 }
@@ -108,6 +108,7 @@ section > section {
 @media only screen and (max-device-width: 511px) {
     section > section {
         margin-top: 8px;
+        justify-content: left;
     }
     .detail {
         width: 100%;
