@@ -75,11 +75,11 @@ li.dropdown {
 /* Sections */
 
 h1 {
-    font-size: 2em;
+    font-size: 2rem;
     text-decoration: underline;
 }
 h2 {
-    font-size: 1.3em;
+    font-size: 1.3rem;
 }
 section > section {
     display: flex;
@@ -108,9 +108,6 @@ section > section {
 @media only screen and (max-device-width: 511px) {
     html {
         font-size: xx-large;
-    }
-    * {
-        font-size: 2rem;
     }
     section > section {
         margin-top: 8px;
