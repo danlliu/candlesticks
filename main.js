@@ -305,6 +305,11 @@ let homingpigeon = new Pattern(
     "The Homing Pigeon is the same as the Harami, except that both candles are red. The Homing Pigeon occurs at the bottom of a downtrend and indicates that the downtrend is over.",
     "yes"
 );
+let ladderbottom = new Pattern(
+    "ladderbottom",
+    "Ladder Bottom",
+
+)
 
 
 let simples = [black_marubozu, white_marubozu, closing_marubozu, opening_marubozu, spinning_top];

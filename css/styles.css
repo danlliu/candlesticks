@@ -81,15 +81,26 @@ h1 {
 h2 {
     font-size: 1.3em;
 }
+@media only screen and (max-width: 800px) {
+    section > section {
+        width: 100%;
+    }
 
-section > section {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
+    .detail {
+        width: 100%;
+    }
 }
+@media only screen and (min-width: 801px) {
+    section > section {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: space-between;
+    }
 
-.detail {
-    width: 40%;
+    .detail {
+        width: 40%;
+    }
 }
 
 .pattern {
@@ -97,8 +108,7 @@ section > section {
 }
 
 .confirmation {
-    min-width: 20%;
-    max-width: 30%;
+    width: 25%;
 }
 
 canvas {

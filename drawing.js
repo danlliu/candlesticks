@@ -57,7 +57,7 @@ let rightup = () => {
 };
 
 ctx.fillStyle = RED;
-ctx.fillRect(104, 48, 16, 48);
+ctx.fillRect(56, 48, 16, 48);
 ctx.fillRect(136, 56, 16, 32);
 
 line(112, 48, 112, 36);
