@@ -81,7 +81,7 @@ h1 {
 h2 {
     font-size: 1.3em;
 }
-@media only screen and (max-width: 511px) {
+@media only screen and (max-width: 767px) {
     section > section {
         display: block;
         width: 100%;
@@ -91,10 +91,21 @@ h2 {
         width: 100%;
     }
     .pattern {
-        width: 100%;
+        float: left;
+        display: inline-block;
+        height: 130px;
+        width: 40%;
+    }
+    .confirmation {
+        display: inline-block;
+        clear: both;
+        margin-left: 16px;
+        width: 30%;
+        font-size: medium;
+        height: 130px;
     }
 }
-@media only screen and (min-device-width: 512px) {
+@media only screen and (min-width: 768px) {
     section > section {
         display: flex;
         flex-wrap: wrap;
