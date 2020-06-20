@@ -12,7 +12,7 @@ function template(p) {
             </div>
             <div class="pattern">\n`;
     for (var i = 0; i < numcanvases; ++i) {
-        temp += `<img src="img/${idname}${i}1x.png 1x, img/${idname}${i}2x.png 2x, img/${idname}${i}3x.png 3x" width="256" height="128" style="border: 1px #000 solid">\n`;
+        temp += `<img srcset="img/${idname}${i}1x.png 1x, img/${idname}${i}2x.png 2x, img/${idname}${i}3x.png 3x" width="256" height="128" style="border: 1px #000 solid">\n`;
         if (temp != numcanvases - 1) {
             temp += "<br/>"
         }
