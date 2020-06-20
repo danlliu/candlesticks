@@ -106,6 +106,9 @@ section > section {
 }
 
 @media only screen and (max-device-width: 511px) {
+    body {
+        font-size: large;
+    }
     section > section {
         margin-top: 8px;
         justify-content: left;
@@ -118,6 +121,7 @@ section > section {
         width: 260px;
     }
     .confirmation {
+        flex-grow: 1;
         margin-left: 16px;
         font-size: x-large;
         min-height: 130px;
