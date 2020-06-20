@@ -40,6 +40,7 @@ li.dropdown {
 .dropdown_content a {
     color: black;
     padding: 12px 16px;
+    margin: 0;
     text-decoration: none;
     display: block;
     text-align: left;
