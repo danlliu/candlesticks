@@ -106,8 +106,11 @@ section > section {
 }
 
 @media only screen and (max-device-width: 511px) {
-    body {
-        font-size: x-large;
+    html {
+        font-size: xx-large;
+    }
+    * {
+        font-size: 2rem;
     }
     section > section {
         margin-top: 8px;
