@@ -67,9 +67,9 @@ li.dropdown {
 #major_rev_list, #secondary_rev_list {
     height: 336px;
     column-fill: auto;
-    -webkit-column-break-inside: avoid;
-    page-break-inside: avoid;
-    break-inside: avoid;
+    -webkit-column-break-inside: avoid-column;
+    page-break-inside: avoid-column;
+    break-inside: avoid-column;
     overflow: hidden;
 }
 

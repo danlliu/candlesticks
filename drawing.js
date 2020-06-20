@@ -1,5 +1,9 @@
-let ctx;
-let load = (id) => {ctx = document.getElementById(id).getContext("2d"); ctx.fillStyle = "#000"; ctx.strokeStyle = "#000"};
+const RED = "#E22E33";
+const GREEN = "#14854C";
+
+let ctx = document.querySelector("canvas").getContext("2d");
+ctx.fillStyle = "#000";
+ctx.strokeStyle = "#000";
 let line = (x1, y1, x2, y2) => {
     ctx.beginPath();
     ctx.moveTo(x1, y1);
@@ -51,3 +55,15 @@ let rightup = () => {
     ctx.fill();
     ctx.strokeStyle = "#000";
 };
+
+ctx.fillStyle = RED;
+ctx.fillRect(104, 48, 16, 48);
+ctx.fillRect(136, 56, 16, 32);
+
+line(112, 48, 112, 36);
+line(112, 96, 112, 104);
+line(144, 56, 144, 48);
+line(144, 88, 144, 92);
+
+leftdown();
+rightup();

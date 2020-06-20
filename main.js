@@ -1,6 +1,3 @@
-const RED = "#E22E33";
-const GREEN = "#14854C";
-
 function template(p) {
     let idname = p.idname;
     let title = p.title;
@@ -301,12 +298,18 @@ let sticksandwich = new Pattern(
     "Stick Sandwich",
     "The Stick Sandwich consists of two red candles with a green candle in between. The two red candle close at the same price, while the green candle opens above the first day's close and closes above the first day's open. The final red candle completely engulfs the green candle.",
     "yes"
-)
+);
+let homingpigeon = new Pattern(
+    "homingpigeon",
+    "Homing Pigeon",
+    "The Homing Pigeon is the same as the Harami, except that both candles are red. The Homing Pigeon occurs at the bottom of a downtrend and indicates that the downtrend is over.",
+    "yes"
+);
 
 
 let simples = [black_marubozu, white_marubozu, closing_marubozu, opening_marubozu, spinning_top];
 let major_reverses = [doji_star, gravestone, dragonfly, bullish_engulfing, bearish_engulfing, hammer, hangingman, piercing, dark_cloud, bullish_harami, bearish_harami, morning_star, evening_star, kicker, shooting_star, invert_hammer];
-let secondary_reverses = [tristar, threeblackcrows, threeidenticalcrows, twocrows, upsidegaptwocrows, meetinglines, belthold, unique3river, breakaway, threeinup, threeindown, threestars, threewhitesoldiers, advance, deliberation, concealbabyswallow, sticksandwich];
+let secondary_reverses = [tristar, threeblackcrows, threeidenticalcrows, twocrows, upsidegaptwocrows, meetinglines, belthold, unique3river, breakaway, threeinup, threeindown, threestars, threewhitesoldiers, advance, deliberation, concealbabyswallow, sticksandwich, homingpigeon];
 
 simples.forEach((p) => {
     SIMPLE.innerHTML += template(p);
