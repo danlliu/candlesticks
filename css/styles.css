@@ -61,7 +61,7 @@ li.dropdown {
 }
 
 #secondary_rev_list {
-    columns: 2;
+    columns: 3;
 }
 
 #major_rev_list a, #secondary_rev_list a {

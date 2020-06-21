@@ -26,8 +26,15 @@ function template(p) {
     return temp;
 }
 
+function clear_navs() {
+    var dropdown_content = document.querySelectorAll(".dropdown_content");
+    dropdown_content.forEach((x) => {
+        x.style.display = "none";
+    });
+}
+
 function navlink(idname, title) {
-    return `<a href="#${idname}-sec">${title}</a>`
+    return `<a href="#${idname}-sec" onclick="clear_navs()">${title}</a>`
 }
 
 const SIMPLE = document.getElementById("simple");
@@ -308,13 +315,20 @@ let homingpigeon = new Pattern(
 let ladderbottom = new Pattern(
     "ladderbottom",
     "Ladder Bottom",
-
-)
+    "The Ladder Bottom is a bottom reversal pattern, starting with three red candles, each with lower opens and closes than the previous day. The fourth day resembles a red Inverted Hammer, and the fifth day is a green candle that opens higher than the open of the fourth day, and continues to go up, closing above the trading range of the second, third, and fourth days.",
+    "yes"
+);
+let matchinglow = new Pattern(
+    "matchinglow",
+    "Matching Low",
+    "The Matching Low is a bottom reversal pattern that is similar to the Homing Pigeon, but both red candles close at their lows. Both candles should close at the same price. Confirmation is needed for a reversal.",
+    "yes"
+);
 
 
 let simples = [black_marubozu, white_marubozu, closing_marubozu, opening_marubozu, spinning_top];
 let major_reverses = [doji_star, gravestone, dragonfly, bullish_engulfing, bearish_engulfing, hammer, hangingman, piercing, dark_cloud, bullish_harami, bearish_harami, morning_star, evening_star, kicker, shooting_star, invert_hammer];
-let secondary_reverses = [tristar, threeblackcrows, threeidenticalcrows, twocrows, upsidegaptwocrows, meetinglines, belthold, unique3river, breakaway, threeinup, threeindown, threestars, threewhitesoldiers, advance, deliberation, concealbabyswallow, sticksandwich, homingpigeon];
+let secondary_reverses = [tristar, threeblackcrows, threeidenticalcrows, twocrows, upsidegaptwocrows, meetinglines, belthold, unique3river, breakaway, threeinup, threeindown, threestars, threewhitesoldiers, advance, deliberation, concealbabyswallow, sticksandwich, homingpigeon, ladderbottom, matchinglow];
 
 simples.forEach((p) => {
     SIMPLE.innerHTML += template(p);

@@ -23,6 +23,18 @@ let leftup = () => {
     line (56, 92, 56, 60);
     //line(80, 80, 80, 48);
 };
+let leftdownsmall = () => {
+    ctx.strokeStyle = RED;
+    line(32, 16, 32, 48);
+    line (48, 36, 48, 68);
+    //line(80, 48, 80, 80);
+};
+let leftupsmall = () => {
+    ctx.strokeStyle = GREEN;
+    line(32, 112, 32, 80);
+    line (48, 92, 48, 60);
+    //line(80, 80, 80, 48);
+};
 let rightdown = () => {
     ctx.strokeStyle = RED;
     ctx.fillStyle = RED;
@@ -57,13 +69,11 @@ let rightup = () => {
 };
 
 ctx.fillStyle = RED;
-ctx.fillRect(56, 48, 16, 48);
-ctx.fillRect(136, 56, 16, 32);
+ctx.fillRect(104, 48, 16, 64);
+ctx.fillRect(136, 72, 16, 40);
 
 line(112, 48, 112, 36);
-line(112, 96, 112, 104);
-line(144, 56, 144, 48);
-line(144, 88, 144, 92);
+line(144, 72, 144, 66);
 
 leftdown();
 rightup();
